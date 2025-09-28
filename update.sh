@@ -1,13 +1,13 @@
 #!/bin/bash
 
-URL='https://github.com/hostinger/hostinger/releases/latest/download/hostinger.tar.gz'
+URL='https://github.com/paymenter/paymenter/releases/latest/download/paymenter.tar.gz'
 
 echo "Starting upgrade process..."
 
 # Read config/app.php to check if someone is trying to ugprade to a major version.
 if [ -f "config/app.php" ]; then
     if grep -q "marketplace" "config/app.php"; then
-        echo -e "\x1b[31;1mCannot execute self-upgrade process. Please follow the upgrade instructions at https://hostinger.org/docs/guides/v0-migration to migrate your V0 to V1\x1b[0m"
+        echo -e "\x1b[31;1mCannot execute self-upgrade process. Please follow the upgrade instructions at https://paymenter.org/docs/guides/v0-migration to migrate your V0 to V1\x1b[0m"
         exit 1
     fi
 fi
@@ -113,16 +113,16 @@ RUN() {
 RUN php artisan down
 
 # Download the latest release from GitHub.
-RUN curl -L -o hostinger.tar.gz "$URL"
+RUN curl -L -o paymenter.tar.gz "$URL"
 
 # Delete app folder
 RUN rm -rf app
 
 # Extract the tarball.
-RUN tar -xzf hostinger.tar.gz
+RUN tar -xzf paymenter.tar.gz
 
 # Remove the tarball.
-RUN rm -f hostinger.tar.gz
+RUN rm -f paymenter.tar.gz
 
 
 # Setup correct permissions on the new files.

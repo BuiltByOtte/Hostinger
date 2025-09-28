@@ -2,7 +2,7 @@ x-common:
   database:
     &db-environment
     # Do not remove the "&db-password" from the end of the line below, it is important
-    # for hostinger functionality.
+    # for Paymenter functionality.
     MYSQL_PASSWORD: &db-password "CHANGE_ME"
     MYSQL_ROOT_PASSWORD: "CHANGE_ME_TOO"
 
@@ -22,13 +22,13 @@ services:
       - "./database:/var/lib/mysql"
     environment:
       <<: *db-environment
-      MYSQL_DATABASE: "hostinger"
-      MYSQL_USER: "hostinger"
+      MYSQL_DATABASE: "paymenter"
+      MYSQL_USER: "paymenter"
   cache:
     image: redis:alpine
     restart: always
-  hostinger:
-    image: ghcr.io/hostinger/hostinger:master
+  paymenter:
+    image: ghcr.io/paymenter/paymenter:master
     restart: always
     ports:
       - "80:80"
